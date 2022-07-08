@@ -1,7 +1,7 @@
 <div class="flex flex-col space-y-5 text-base">
-  <div (click)="copyToClipboard()" class="relative cursor-pointer font-normal  text-3xl"
+  <div class="relative font-normal  text-3xl"
     [ngClass]="crossOut && !hideBtns ? 'line-through text-gray-500' : textColor">
-    {{sens}}
+    <span class="cursor-pointer" (click)="copyToClipboard()">{{sens}}</span>
 
     <div [ngClass]="showCopyTooltip ? 'opacity-100 visible' : 'opacity-0 invisible'"
       class="absolute ease-out duration-300 left-[21%] top-[120%]">

@@ -20,9 +20,10 @@ export class CalculatedSectionComponent implements OnInit {
   }
 
   displaySens(sens: number[]) {
-    this.senses.push(sens)
-    console.log(document.body.scrollHeight)
-    window.scrollTo(0, document.body.scrollHeight);
+    if (!equal(sens)) {
+      this.senses.push(sens)
+      window.scrollTo(0, document.body.scrollHeight);
+    } 
   }
 
   calculateNewSens(sensPos: number) {
@@ -33,4 +34,28 @@ export class CalculatedSectionComponent implements OnInit {
     this.senses = []
   }
 
+}
+
+// returns the average of two nums
+function getAvg(num1: number, num2: number): number {
+  return ((num1 + num2) / 2)
+}
+
+// returns if any of the three senses are equal
+function equal(senses: number[]): boolean {
+  const areEqual = senses[0] == senses[1] || senses[1] == senses[2] || senses[0] == senses[2]
+
+  if (areEqual) {
+      return true
+  }
+
+  const avgZero1 = !(parseInt(getAvg(senses[0], senses[1]).toFixed(1)))
+  const avgZero2 = !(parseInt(getAvg(senses[1], senses[2]).toFixed(1)))
+
+  // checks if average is close to 0
+  if (avgZero1 || avgZero2) {
+      return true
+  }
+  
+  return false
 }

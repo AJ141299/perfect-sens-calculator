@@ -48,13 +48,19 @@ function getAvg(num1: number, num2: number): number {
 
 // returns if any of the three senses are equal
 function equal(senses: number[]): boolean {
-    if (senses[0] == senses[1]) {
-        return true
-    } else if (senses[1] == senses[2]) {
-        return true
-    } else if (senses[0] == senses[2]) {
+    const areEqual = senses[0] == senses[1] || senses[1] == senses[2] || senses[0] == senses[2]
+
+    if (areEqual) {
         return true
     }
 
+    const avgZero1 = !(parseInt(getAvg(senses[0], senses[1]).toFixed(1)))
+    const avgZero2 = !(parseInt(getAvg(senses[1], senses[2]).toFixed(1)))
+
+    // checks if average is close to 0
+    if (avgZero1 || avgZero2) {
+        return true
+    }
+    
     return false
 }
