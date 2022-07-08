@@ -3,7 +3,8 @@
     [ngClass]="crossOut && !hideBtns ? 'line-through text-gray-500' : textColor">
     {{sens}}
 
-    <div [ngClass]="showCopyTooltip ? 'visible' : 'hidden'" class="absolute ease-out left-[21%] top-[120%]">
+    <div [ngClass]="showCopyTooltip ? 'opacity-100 visible' : 'opacity-0 invisible'"
+      class="absolute ease-out duration-300 left-[21%] top-[120%]">
       <app-tooltip [text]="'Copied to clipboard!'"></app-tooltip>
     </div>
   </div>

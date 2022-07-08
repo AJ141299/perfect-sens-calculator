@@ -38,6 +38,6 @@ export class SensComponent implements OnInit {
     this.showCopyTooltip = true
     navigator.clipboard.writeText(this.sens.toString());
 
-    setTimeout(() => {this.showCopyTooltip = false}, 1200)
+    setTimeout(() => {this.showCopyTooltip = false}, 1100)
   }
 }
