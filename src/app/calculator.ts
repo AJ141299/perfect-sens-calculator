@@ -1,5 +1,7 @@
 // calculates and returns an array of senses
 export function calculator(senses: number[], chosenSens: number, firstCalculate?: boolean): number[] {
+    
+
     const output: number[] = []
 
     let sens1: number
@@ -13,6 +15,10 @@ export function calculator(senses: number[], chosenSens: number, firstCalculate?
 
         output.push(sens1, sens2, sens3)
         return output
+    }
+
+    if (equal(senses)) {
+        return senses
     }
 
     // if middle chosen
@@ -38,4 +44,17 @@ export function calculator(senses: number[], chosenSens: number, firstCalculate?
 // returns the average of two nums
 function getAvg(num1: number, num2: number): number {
     return ((num1 + num2) / 2)
+}
+
+// returns if any of the three senses are equal
+function equal(senses: number[]): boolean {
+    if (senses[0] == senses[1]) {
+        return true
+    } else if (senses[1] == senses[2]) {
+        return true
+    } else if (senses[0] == senses[2]) {
+        return true
+    }
+
+    return false
 }
