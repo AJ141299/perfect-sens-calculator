@@ -1,6 +1,7 @@
-<div class="lg:pb-20 flex-col flex items-center">
+<div class="pb-10 lg:pb-20 flex-col flex items-center">
   <app-init-sens (onCalculate)="firstDisplay($event)" (resetEvent)="reset()"></app-init-sens>
-  <div [ngClass]="senses.length ? 'px-6 py-8 rounded-lg border-2 border-[#581e6d]' : ''">
+  <div
+    [ngClass]="senses.length ? 'px-6 py-8 rounded-lg border-2 border-border opacity-100 ease-out duration-300' : 'invisible opacity-0'">
     <app-senses *ngFor="let sensArr of senses" [sensArr]="sensArr" (newSensEvent)="calculateNewSens($event)" class="">
     </app-senses>
   </div>
