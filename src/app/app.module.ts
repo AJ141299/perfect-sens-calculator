@@ -8,6 +8,7 @@ import { SensComponent } from './components/sens/sens.component';
 import { CalculatedSectionComponent } from './components/calculated-section/calculated-section.component';
 import { SensesComponent } from './components/senses/senses.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InitSensComponent,
     SensComponent,
     CalculatedSectionComponent,
-    SensesComponent
+    SensesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div class="pb-20">
+<div class="pb-20 flex-col flex items-center">
   <app-init-sens (onCalculate)="firstDisplay($event)" (resetEvent)="reset()"></app-init-sens>
   <app-senses *ngFor="let sensArr of senses" [sensArr]="sensArr" (newSensEvent)="calculateNewSens($event)"></app-senses>
 </div>
