@@ -1,23 +1,24 @@
 <section class="fade-up lg:space-x-3 pb-14 flex flex-col space-y-5 lg:space-y-0 lg:flex-row">
-  <div class="w-full lg:w-auto">
-    <input class="text-center bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow-lg" type="number"
-      required name="initial-sensitivity" [(ngModel)]="sensInput" #sensValue id="init-sens"
+  <div>
+    <input
+      class="w-[80vw] lg:w-auto text-center bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow-lg"
+      type="number" required name="initial-sensitivity" [(ngModel)]="sensInput" #sensValue id="init-sens"
       placeholder="Initial sensitivity...">
   </div>
 
 
-  <div class="w-full lg:w-auto">
+  <div>
     <button (click)="calculateSens()" [disabled]="!sensValue.value"
-      class="drop-shadow-lg w-full lg:w-auto outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
+      class="drop-shadow-lg w-[80vw] lg:w-auto outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
       [ngClass]="sensValue.value ? ' bg-blue-900 hover:bg-blue-700' : 'bg-lighter-background text-gray-500'"
       id="calculate-btn">
       Calculate
     </button>
   </div>
 
-  <div class="w-full lg:w-auto">
+  <div>
     <button (click)="reset()" [disabled]="hideClearBtn"
-      class="drop-shadow-lg w-full lg:w-auto rounded-full py-3 px-8 font-medium outline-none"
+      class="drop-shadow-lg w-[80vw] lg:w-auto rounded-full py-3 px-8 font-medium outline-none"
       [ngClass]="hideClearBtn ? 'bg-lighter-background text-gray-500' : 'bg-lighter-background hover:bg-red-800  ease-out duration-200'"
       id="calculate-btn">
       Reset
@@ -25,8 +26,8 @@
   </div>
 
 
-  <div class="w-full lg:w-auto">
-    <a class="drop-shadow-lg w-full lg:w-auto flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
+  <div>
+    <a class="drop-shadow-lg w-[80vw] lg:w-auto flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
       href="https://www.youtube.com/watch?v=8VJZiolzaI4" target="_blank">
       <p class="">Tutorial Video</p>
       <svg xmlns="http://www.w3.org/2000/svg" class=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
