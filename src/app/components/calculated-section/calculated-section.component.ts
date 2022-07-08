@@ -8,7 +8,7 @@ import { calculator } from '../../calculator';
 })
 export class CalculatedSectionComponent implements OnInit {
   senses: number[][] = [];
-
+  autoRound: boolean = false
   constructor() { }
 
   ngOnInit(): void {
@@ -27,18 +27,17 @@ export class CalculatedSectionComponent implements OnInit {
   }
 
   calculateNewSens(sensPos: number) {
-      this.displaySens(calculator(this.senses[this.senses.length - 1], sensPos, false))
+      this.displaySens(calculator(this.senses[this.senses.length - 1], sensPos, false, this.autoRound))
   }
 
   reset() {
     this.senses = []
   }
 
-}
-
-// returns the average of two nums
-function getAvg(num1: number, num2: number): number {
-  return ((num1 + num2) / 2)
+  toggleAutoRound(autoRound: boolean) {
+    this.autoRound = autoRound
+    this.senses = []
+  }
 }
 
 // returns if any of the three senses are equal

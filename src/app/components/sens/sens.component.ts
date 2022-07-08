@@ -22,7 +22,6 @@ export class SensComponent implements OnInit {
 
   newSens() {
     const sensPos: number = this.sensArr.findIndex(element => element == this.sens)
-    console.log("In Sens Component - sensPos: ", sensPos)
     this.newSensEvent.emit(sensPos)
   }
 

@@ -1,7 +1,5 @@
 // calculates and returns an array of senses
-export function calculator(senses: number[], chosenSens: number, firstCalculate?: boolean): number[] {
-    
-
+export function calculator(senses: number[], chosenSens: number, firstCalculate?: boolean, autoRound?: boolean): number[] {
     const output: number[] = []
 
     let sens1: number
@@ -13,6 +11,11 @@ export function calculator(senses: number[], chosenSens: number, firstCalculate?
         sens2 = senses[0]
         sens3 = parseFloat((senses[0] * 2).toFixed(3))
 
+        if (autoRound) {
+            sens1 = Math.round(sens1)
+            sens2 = Math.round(sens2)
+            sens3 = Math.round(sens3)
+        }
         output.push(sens1, sens2, sens3)
         return output
     }
@@ -22,18 +25,21 @@ export function calculator(senses: number[], chosenSens: number, firstCalculate?
         sens1 = parseFloat((getAvg(senses[0], senses[chosenSens])).toFixed(3))
         sens2 = senses[chosenSens]
         sens3 = parseFloat((getAvg(senses[chosenSens], senses[2])).toFixed(3))
-
-        output.push(sens1, sens2, sens3)
-
-        // if left or right chosen
+        
+        // if left or right sens is chosen
     } else {
         sens1 = parseFloat((senses[chosenSens] / 2).toFixed(3))
         sens2 = senses[chosenSens]
         sens3 = parseFloat((senses[chosenSens] * 1.5).toFixed(3))
-
-        output.push(sens1, sens2, sens3)
     }
 
+    if (autoRound) {
+        sens1 = Math.round(sens1)
+        sens2 = Math.round(sens2)
+        sens3 = Math.round(sens3)
+    }
+
+    output.push(sens1, sens2, sens3)
     return output
 }
 
