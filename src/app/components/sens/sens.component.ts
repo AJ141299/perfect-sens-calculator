@@ -30,4 +30,8 @@ export class SensComponent implements OnInit {
       this.crossOut = true
     }
   }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.sens.toString());
+  }
 }
