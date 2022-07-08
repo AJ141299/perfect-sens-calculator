@@ -17,10 +17,6 @@ export function calculator(senses: number[], chosenSens: number, firstCalculate?
         return output
     }
 
-    if (equal(senses)) {
-        return senses
-    }
-
     // if middle chosen
     if (chosenSens === 1) {
         sens1 = parseFloat((getAvg(senses[0], senses[chosenSens])).toFixed(3))
@@ -46,21 +42,3 @@ function getAvg(num1: number, num2: number): number {
     return ((num1 + num2) / 2)
 }
 
-// returns if any of the three senses are equal
-function equal(senses: number[]): boolean {
-    const areEqual = senses[0] == senses[1] || senses[1] == senses[2] || senses[0] == senses[2]
-
-    if (areEqual) {
-        return true
-    }
-
-    const avgZero1 = !(parseInt(getAvg(senses[0], senses[1]).toFixed(1)))
-    const avgZero2 = !(parseInt(getAvg(senses[1], senses[2]).toFixed(1)))
-
-    // checks if average is close to 0
-    if (avgZero1 || avgZero2) {
-        return true
-    }
-    
-    return false
-}
