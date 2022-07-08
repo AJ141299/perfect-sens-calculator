@@ -12,6 +12,8 @@ export class SensComponent implements OnInit {
   @Output() newSensEvent = new EventEmitter<number>();
   crossOut: boolean = false;
   
+  @Input() textColor: string = ''
+  
   constructor() { }
 
   ngOnInit(): void {

@@ -29,6 +29,9 @@ export class InitSensComponent implements OnInit {
     this.hideClearBtn = false
     const inputValue:number = parseFloat(this.sensInput);
     this.onCalculate.emit(calculator([inputValue], 0, true))
+
+    const sensInputField = <HTMLInputElement>document.getElementById('init-sens');
+    sensInputField.value = ''
   }
 
   reset() {

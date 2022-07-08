@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SensesComponent implements OnInit {
   @Input() sensArr: number[] = [];
   hideBtns: boolean = false;
+  textColors: string[] = [  'text-teal-300', 'text-fuchsia-300', 'text-orange-300']
   @Output() newSensEvent = new EventEmitter<number>();
 
   constructor() { }
