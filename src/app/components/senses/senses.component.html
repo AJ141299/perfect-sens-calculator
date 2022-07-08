@@ -1,0 +1,10 @@
+<section class="space-y-10 text-xl pt-4" id="calculated-section">
+  <section class="flex space-x-24">
+
+    <app-sens *ngFor="let sens of sensArr" [sens]="sens" [sensArr]="sensArr" (newSensEvent)="newSens($event)"
+      [hideBtns]="hideBtns">
+    </app-sens>
+
+  </section>
+
+</section>

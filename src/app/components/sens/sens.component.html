@@ -1,0 +1,15 @@
+<div class="flex flex-col space-y-5 text-base">
+  <p class="font-normal text-teal-300 text-3xl" [ngClass]="crossOut ? 'line-through' : ''">{{sens}}</p>
+
+  <div class="flex space-x-3">
+    <button (click)="newSens()" class="bg-slate-800 hover:bg-green-700 px-10 py-1 rounded-full"
+      [ngClass]="hideBtns ? 'invisible' : 'visible ease-out duration-200 '">
+      Select
+    </button>
+
+    <button (click)="crossOutValue()" class="bg-slate-800 hover:bg-red-800  w-32 py-1 rounded-full"
+      [ngClass]="hideBtns ? 'invisible' : 'visible ease-out duration-200'">
+      {{crossOut ? 'Undo' : 'Discard'}}
+    </button>
+  </div>
+</div>

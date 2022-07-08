@@ -1,0 +1,4 @@
+<div class="pb-20">
+  <app-init-sens (onCalculate)="firstDisplay($event)" (resetEvent)="reset()"></app-init-sens>
+  <app-senses *ngFor="let sensArr of senses" [sensArr]="sensArr" (newSensEvent)="calculateNewSens($event)"></app-senses>
+</div>
