@@ -1,5 +1,5 @@
-<section class="space-x-3 pb-14 flex justify-center">
-  <input class="bg-lighter-background outline-none pl-8 pr-24 py-3 rounded-full" type="number" required
+<section class="lg:space-x-3 pb-14 flex flex-col space-y-5 lg:space-y-0 lg:flex-row justify-center">
+  <input class="text-center bg-lighter-background outline-none px-10 py-3 rounded-full" type="number" required
     name="initial-sensitivity" [(ngModel)]="sensInput" #sensValue id="init-sens" placeholder="Initial sensitivity...">
 
   <button (click)="calculateSens()" [disabled]="!sensValue.value"
@@ -16,7 +16,7 @@
   </button>
 
 
-  <a class="flex space-x-2 items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-4 px-8 font-medium"
+  <a class="flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-4 px-8 font-medium"
     href="https://www.youtube.com/watch?v=8VJZiolzaI4" target="_blank">
     <p class="">Tutorial Video</p>
     <svg xmlns="http://www.w3.org/2000/svg" class=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"

@@ -1,5 +1,5 @@
-<section class="space-y-10 text-xl pt-4" id="calculated-section">
-  <section class="flex space-x-24">
+<section class="lg:pb-0 lg:space-y-10 text-xl pt-4" id="calculated-section">
+  <section class="flex flex-col lg:flex-row space-y-20 lg:space-y-0 lg:space-x-24">
 
 
     <app-sens *ngFor="let sens of sensArr" [sens]="sens" [sensArr]="sensArr" (newSensEvent)="newSens($event)"
@@ -7,5 +7,5 @@
     </app-sens>
 
   </section>
-
+  <div class="h-1 w-[100%] bg-[#5a2243] lg:hidden my-20"></div>
 </section>
