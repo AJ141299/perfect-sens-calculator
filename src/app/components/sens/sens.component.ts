@@ -11,6 +11,7 @@ export class SensComponent implements OnInit {
   @Input() hideBtns: boolean = false;
   @Output() newSensEvent = new EventEmitter<number>();
   crossOut: boolean = false;
+  showCopyTooltip: boolean = false;
   
   @Input() textColor: string = ''
   
@@ -34,6 +35,9 @@ export class SensComponent implements OnInit {
   }
 
   copyToClipboard() {
+    this.showCopyTooltip = true
     navigator.clipboard.writeText(this.sens.toString());
+
+    setTimeout(() => {this.showCopyTooltip = false}, 1200)
   }
 }
