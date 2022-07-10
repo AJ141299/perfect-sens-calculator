@@ -4,46 +4,56 @@ import { calculator } from '../../calculator';
 @Component({
   selector: 'app-init-sens',
   templateUrl: './init-sens.component.html',
-  styleUrls: ['./init-sens.component.css']
+  styleUrls: ['./init-sens.component.css'],
 })
 export class InitSensComponent implements OnInit {
-  @Output() onCalculate = new EventEmitter<number[]>()
-  @Output() resetEvent = new EventEmitter()
-  @Output() autoRoundEvent = new EventEmitter<boolean>()
+  @Output() onCalculate = new EventEmitter<number[]>();
+  @Output() resetEvent = new EventEmitter();
+  @Output() roundToEvent = new EventEmitter<number>();
 
   sensInput: string = '';
-  hideClearBtn: boolean = true
-  enableCalculateBtn: boolean = true
-  toggleRoundingBtn: boolean = false
-  constructor() { }
+  hideClearBtn: boolean = true;
+  enableCalculateBtn: boolean = true;
+  disableRoundToInput: boolean = false;
+  roundToDigit: number = 0;
 
-  ngOnInit(): void {
-    
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   calculateSens() {
     // check for empty field
     if (!this.sensInput) {
-      return
+      return;
     }
 
-    this.enableCalculateBtn = false
-    this.hideClearBtn = false
-    const inputValue:number = parseFloat(this.sensInput);
-    this.onCalculate.emit(calculator([inputValue], 0, true, this.toggleRoundingBtn))
+    this.enableCalculateBtn = false;
+    this.hideClearBtn = false;
+    const inputValue: number = parseFloat(this.sensInput);
+    this.onCalculate.emit(calculator([inputValue], 0, true, this.roundToDigit));
 
-    const sensInputField = <HTMLInputElement>document.getElementById('init-sens');
-    sensInputField.value = ''
+    const sensInputField = <HTMLInputElement>(
+      document.getElementById('init-sens')
+    );
+    sensInputField.value = '';
   }
 
   reset() {
     this.resetEvent.emit();
-    this.enableCalculateBtn = true
-    this.hideClearBtn = true
+    this.enableCalculateBtn = true;
+    this.hideClearBtn = true;
   }
-  
-  toggleAutoRound() {
-    this.toggleRoundingBtn = !(this.toggleRoundingBtn)
-    this.autoRoundEvent.emit(this.toggleRoundingBtn)
+
+  test() {
+    console.log('Working!');
+  }
+
+  updateRoundToDigit(roundToElement: HTMLSelectElement) {
+    const newRoundToDigit = roundToElement.selectedIndex;
+
+    if (newRoundToDigit >= 0 && newRoundToDigit < 6) {
+      this.roundToDigit = newRoundToDigit;
+      this.roundToEvent.emit(newRoundToDigit);
+    }
   }
 }

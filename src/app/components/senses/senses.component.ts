@@ -16,9 +16,9 @@ export class SensesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newSens(sensPos: number) {
+  newSens(pickedSensPos: number) {
     this.hideBtns = true
-    this.newSensEvent.emit(sensPos)
+    this.newSensEvent.emit(pickedSensPos)
   }
 
 }

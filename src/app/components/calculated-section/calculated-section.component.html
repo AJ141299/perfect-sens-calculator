@@ -1,5 +1,6 @@
 <div class="pb-10 lg:pb-20 flex-col flex items-center">
-  <app-init-sens (onCalculate)="firstDisplay($event)" (autoRoundEvent)="toggleAutoRound($event)" (resetEvent)="reset()">
+  <app-init-sens (onCalculate)="firstDisplay($event)" (roundToEvent)="updateRoundToDigit($event)"
+    (resetEvent)="reset()">
   </app-init-sens>
   <div
     [ngClass]="senses.length ? 'px-6 pt-8 lg:py-8 rounded-lg border-2 border-border opacity-100 ease-out duration-300' : 'invisible opacity-0'">

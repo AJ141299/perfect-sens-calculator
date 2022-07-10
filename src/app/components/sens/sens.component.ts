@@ -21,8 +21,8 @@ export class SensComponent implements OnInit {
   }
 
   newSens() {
-    const sensPos: number = this.sensArr.findIndex(element => element == this.sens)
-    this.newSensEvent.emit(sensPos)
+    const pickedSensPos: number = this.sensArr.findIndex(element => element == this.sens)
+    this.newSensEvent.emit(pickedSensPos)
   }
 
   crossOutValue() {

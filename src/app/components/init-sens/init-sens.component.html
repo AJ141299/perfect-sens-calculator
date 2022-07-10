@@ -1,8 +1,9 @@
-<section class="fade-up lg:space-x-3 pb-14 flex flex-col space-y-5 lg:space-y-0 lg:flex-row">
+<div class="fade-up lg:space-x-3 pb-14 flex flex-col lg:flex-row space-y-5 lg:space-y-5">
   <div>
-    <input class="w-[80vw] lg:w-auto text-center bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow"
+    <input
+      class="w-[80vw] lg:w-auto text-center placeholder:text-gray-300 bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow"
       type="number" required name="initial-sensitivity" [(ngModel)]="sensInput" #sensValue id="init-sens"
-      placeholder="Initial sensitivity...">
+      placeholder="Initial sensitivity">
   </div>
 
 
@@ -24,15 +25,23 @@
     </button>
   </div>
 
-  <div>
-    <button (click)="toggleAutoRound()"
-      class="ease-out duration-200 drop-shadow w-[80vw] lg:w-auto rounded-full py-3 px-8 font-medium outline-none lg:hover:bg-violet-900"
-      [ngClass]="toggleRoundingBtn ? 'bg-violet-900' : 'bg-lighter-background'" id="calculate-btn">
-      Auto Round
-    </button>
+
+  <!-- round to input -->
+  <div
+    class="w-[80vw] lg:w-auto space-x-1 text-center bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow ease-in-out">
+    <label for="roundTo">Round to:</label>
+    <select (change)="updateRoundToDigit(roundToInput)" class="bg-transparent" name="roundTO" id="round-to"
+      #roundToInput>
+      <option selected value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="3">4</option>
+      <option value="3">5</option>
+    </select>
   </div>
 
-
+  <!-- tut vid -->
   <div>
     <a class="drop-shadow w-[80vw] lg:w-auto flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
       href="https://www.youtube.com/watch?v=8VJZiolzaI4" target="_blank">
@@ -44,6 +53,4 @@
       </svg>
     </a>
   </div>
-
-
-</section>
+</div>
