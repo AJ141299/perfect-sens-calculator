@@ -1,43 +1,46 @@
-// calculates and returns an array of senses
-export function calculator(senses: number[], chosenSens: number, firstCalculate?: boolean, roundTo?: number): number[] {
-    const output: number[] = []
+import { SensRow } from './components/sensDB-interface';
 
-    let sens1: number
-    let sens2: number
-    let sens3: number
+// calculates and returns a SensRow object
+export function calculator(
+  sensRow: SensRow,
+  roundTo: number,
+  firstCalculate?: boolean
+): SensRow {
+  let newSens: SensRow = { sens: [], pickedPos: -1 };
+  const pickedPos: number = sensRow.pickedPos;
+  const senses: number[] = sensRow.sens;
 
-    if (!roundTo) {
-        roundTo = 0
-    }
+  let sens1: number;
+  let sens2: number;
+  let sens3: number;
 
-    if (firstCalculate) {
-        sens1 = parseFloat((senses[0] / 2).toFixed(roundTo))
-        sens2 = senses[0]
-        sens3 = parseFloat((senses[0] * 2).toFixed(roundTo))
+  if (firstCalculate) {
+    sens1 = parseFloat((senses[0] / 2).toFixed(roundTo));
+    sens2 = senses[0];
+    sens3 = parseFloat((senses[0] * 2).toFixed(roundTo));
 
-        output.push(sens1, sens2, sens3)
-        return output
-    }
+    newSens.sens.push(sens1, sens2, sens3);
+    return newSens;
+  }
 
-    // if middle chosen
-    if (chosenSens === 1) {
-        sens1 = parseFloat((getAvg(senses[0], senses[chosenSens])).toFixed(roundTo))
-        sens2 = senses[chosenSens]
-        sens3 = parseFloat((getAvg(senses[chosenSens], senses[2])).toFixed(roundTo))
-        
-        // if left or right sens is chosen
-    } else {
-        sens1 = parseFloat((senses[chosenSens] / 2).toFixed(roundTo))
-        sens2 = senses[chosenSens]
-        sens3 = parseFloat((senses[chosenSens] * 1.5).toFixed(roundTo))
-    }
+  // if middle chosen
+  if (pickedPos === 1) {
+    sens1 = parseFloat(getAvg(senses[0], senses[pickedPos]).toFixed(roundTo));
+    sens2 = senses[pickedPos];
+    sens3 = parseFloat(getAvg(senses[pickedPos], senses[2]).toFixed(roundTo));
 
-    output.push(sens1, sens2, sens3)
-    return output
+    // if left or right sens is chosen
+  } else {
+    sens1 = parseFloat((senses[pickedPos] / 2).toFixed(roundTo));
+    sens2 = senses[pickedPos];
+    sens3 = parseFloat((senses[pickedPos] * 1.5).toFixed(roundTo));
+  }
+
+  newSens.sens.push(sens1, sens2, sens3);
+  return newSens;
 }
 
 // returns the average of two nums
 function getAvg(num1: number, num2: number): number {
-    return ((num1 + num2) / 2)
+  return (num1 + num2) / 2;
 }
-

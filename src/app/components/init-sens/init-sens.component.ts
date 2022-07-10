@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { calculator } from '../../calculator';
+import { SensDB } from '../sensDB-interface';
 
 @Component({
   selector: 'app-init-sens',
@@ -7,12 +8,12 @@ import { calculator } from '../../calculator';
   styleUrls: ['./init-sens.component.css'],
 })
 export class InitSensComponent implements OnInit {
-  @Output() onCalculate = new EventEmitter<number[]>();
+  @Output() firstCalculate = new EventEmitter<number>();
   @Output() resetEvent = new EventEmitter();
   @Output() roundToEvent = new EventEmitter<number>();
 
   sensInput: string = '';
-  hideClearBtn: boolean = true;
+  disableResetBtn: boolean = true;
   enableCalculateBtn: boolean = true;
   disableRoundToInput: boolean = false;
   roundToDigit: number = 0;
@@ -28,24 +29,19 @@ export class InitSensComponent implements OnInit {
     }
 
     this.enableCalculateBtn = false;
-    this.hideClearBtn = false;
-    const inputValue: number = parseFloat(this.sensInput);
-    this.onCalculate.emit(calculator([inputValue], 0, true, this.roundToDigit));
+    this.disableResetBtn = false;
+    const firstSens: number = parseFloat(this.sensInput);
+    this.firstCalculate.emit(firstSens);
+  }
 
+  reset() {
     const sensInputField = <HTMLInputElement>(
       document.getElementById('init-sens')
     );
     sensInputField.value = '';
-  }
-
-  reset() {
     this.resetEvent.emit();
     this.enableCalculateBtn = true;
-    this.hideClearBtn = true;
-  }
-
-  test() {
-    console.log('Working!');
+    this.disableResetBtn = true;
   }
 
   updateRoundToDigit(roundToElement: HTMLSelectElement) {

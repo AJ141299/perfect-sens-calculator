@@ -1,7 +1,6 @@
 <div class="lg:pb-0 lg:space-y-10 text-xl" id="calculated-section">
   <section class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-24">
 
-
     <app-sens *ngFor="let sens of sensArr; let i=index" [sens]="sens" [sensArr]="sensArr"
       (newSensEvent)="newSens($event)" [hideBtns]="hideBtns" [textColor]="textColors[i]">
     </app-sens>

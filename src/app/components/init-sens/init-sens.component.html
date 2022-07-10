@@ -1,7 +1,7 @@
-<div class="fade-up lg:space-x-3 pb-14 flex flex-col lg:flex-row space-y-5 lg:space-y-5">
+<div class="fade-up lg:space-x-3 pb-14 flex flex-col lg:flex-row space-y-5 items-center lg:space-y-0">
   <div>
     <input
-      class="w-[80vw] lg:w-auto text-center placeholder:text-gray-300 bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow"
+      class=" lg:w-auto text-center placeholder:text-gray-300 bg-lighter-background outline-none px-10 py-3 rounded-full drop-shadow"
       type="number" required name="initial-sensitivity" [(ngModel)]="sensInput" #sensValue id="init-sens"
       placeholder="Initial sensitivity">
   </div>
@@ -17,9 +17,9 @@
   </div>
 
   <div>
-    <button (click)="reset()" [disabled]="hideClearBtn"
+    <button (click)="reset()" [disabled]="disableResetBtn"
       class="drop-shadow w-[80vw] lg:w-auto rounded-full py-3 px-8 font-medium outline-none"
-      [ngClass]="hideClearBtn ? 'bg-lighter-background text-gray-500' : 'bg-lighter-background hover:bg-red-800  ease-out duration-200'"
+      [ngClass]="disableResetBtn ? 'bg-lighter-background text-gray-500' : 'bg-lighter-background hover:bg-red-800  ease-out duration-200'"
       id="calculate-btn">
       Reset
     </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { calculator } from '../../calculator';
+import { SensDB, SensRow } from '../sensDB-interface';
 
 @Component({
   selector: 'app-calculated-section',
@@ -7,48 +8,85 @@ import { calculator } from '../../calculator';
   styleUrls: ['./calculated-section.component.css'],
 })
 export class CalculatedSectionComponent implements OnInit {
-  senses: number[][] = [];
-  // senses = [{senses(number[]): [25,50,100], pickedPos(number): 0}]
+  sensDB: SensDB = { originSens: 0, sensTable: [] };
+  sensCollection: number[][] = [];
   roundToDigit: number = 0;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.updateFromLocalStorage();
+    // this.syncSensBtns();
+  }
 
-  firstDisplay(sens: number[]) {
-    this.senses = [];
-    this.senses.push(sens);
+  firstCalculate(originSens: number) {
+    this.reset();
+    this.sensDB.originSens = originSens;
+    const newSens: SensRow = calculator(
+      { sens: [originSens], pickedPos: 0 },
+      this.roundToDigit,
+      true
+    );
+    this.refreshDisplay(newSens);
   }
 
   // displays a 'sens' (e.g. [25, 50, 100]) on the calculated section
-  displaySens(sens: number[]) {
-    if (!isFalseSens(sens)) {
-      this.senses.push(sens);
+  refreshDisplay(newSens: SensRow) {
+    if (!isFalseSens(newSens.sens)) {
+      this.sensDB.sensTable.push(newSens);
+      this.updateSensCollection();
+      this.setLocalStorage();
       window.scrollTo(0, document.body.scrollHeight);
     }
   }
 
-  calculateNewSens(pickedSensPos: number) {
-    this.displaySens(
-      calculator(
-        this.senses[this.senses.length - 1],
-        pickedSensPos,
-        false,
-        this.roundToDigit
-      )
-    );
+  updateSensCollection() {
+    const lastSens: number[] =
+      this.sensDB.sensTable[this.getLastSensIndex()].sens;
+    this.sensCollection.push(lastSens);
+  }
+
+  calculateSens(pickedPos: number) {
+    this.setLastSensPos(pickedPos);
+    const lastSens = this.sensDB.sensTable[this.getLastSensIndex()];
+    const newSens: SensRow = calculator(lastSens, this.roundToDigit, true);
+    this.refreshDisplay(newSens);
+  }
+
+  getLastSensIndex() {
+    return this.sensDB.sensTable.length - 1;
+  }
+
+  setLastSensPos(pickedPos: number) {
+    this.sensDB.sensTable[this.getLastSensIndex()].pickedPos = pickedPos;
   }
 
   reset() {
-    this.senses = [];
+    this.sensDB = { originSens: 0, sensTable: [] };
+    this.sensCollection = [];
   }
 
   updateRoundToDigit(newRoundToDigit: number) {
     this.roundToDigit = newRoundToDigit;
     this.reset();
   }
+
+  setLocalStorage() {
+    localStorage.setItem('sensDB', JSON.stringify(this.sensDB));
+    localStorage.setItem('sensCollection', JSON.stringify(this.sensCollection));
+  }
+
+  updateFromLocalStorage() {
+    this.sensDB = JSON.parse(localStorage.getItem('sensDB') || '{}');
+    this.sensCollection = JSON.parse(
+      localStorage.getItem('sensCollection') || '{}'
+    );
+  }
+
+  syncSensBtns() {}
 }
 
 // returns if any of the three senses are equal
-function isFalseSens(senses: number[]): boolean {
-  return senses[0] >= senses[1] || senses[2] <= senses[1];
+function isFalseSens(newSens: number[]): boolean {
+  return newSens[0] >= newSens[1] || newSens[2] <= newSens[1];
 }
