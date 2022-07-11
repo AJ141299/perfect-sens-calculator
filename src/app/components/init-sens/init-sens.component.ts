@@ -14,11 +14,13 @@ export class InitSensComponent implements OnInit {
   sensInput: string = '';
   enableCalculateBtn: boolean = true;
   disableRoundToInput: boolean = false;
-  roundToDigit: number = 0;
+  @Input() roundToDigit: number = 0;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.syncRoundToDigitOption();
+  }
 
   calculateSens() {
     // check for empty field
@@ -49,5 +51,13 @@ export class InitSensComponent implements OnInit {
       this.roundToDigit = newRoundToDigit;
       this.roundToEvent.emit(newRoundToDigit);
     }
+  }
+
+  syncRoundToDigitOption() {
+    document.querySelectorAll('.round-to-option').forEach((roundOption) => {
+      if (roundOption.getAttribute('value') == this.roundToDigit.toString()) {
+        roundOption.setAttribute('selected', 'selected');
+      }
+    });
   }
 }

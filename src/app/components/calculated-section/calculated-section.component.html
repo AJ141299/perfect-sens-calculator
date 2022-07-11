@@ -1,12 +1,16 @@
-<div class="pb-10 lg:pb-20 flex-col flex items-center">
-  <app-init-sens (firstCalculate)="firstCalculate($event)" (roundToEvent)="updateRoundToDigit($event)"
-    [disableResetBtn]="!sensCollection.length" (resetEvent)="reset()">
-  </app-init-sens>
-  <div [ngClass]=" sensDB.originSens
-    ? 'px-6 pt-8 lg:py-8 rounded-lg border-2 border-border opacity-100 ease-out duration-300' : 'invisible opacity-0'">
-    <app-senses id="app-senses" *ngFor=" let sensArr of sensCollection ; index as i"
-      [hideBtns]="(i+1) != sensCollection.length" [sensArr]="sensArr" (newSensEvent)="calculateSens($event)">
-    </app-senses>
-  </div>
+  <app-floating-btn (clickedEvent)="undo()" [text]="'Undo'" [disable]="!sensCollection.length"
+    class="absolute bottom-32 right-24">
+  </app-floating-btn>
 
-</div>
+  <div class="pb-10 lg:pb-20 flex-col flex items-center">
+    <app-init-sens (firstCalculate)="firstCalculate($event)" (roundToEvent)="updateRoundToDigit($event)"
+      [roundToDigit]="this.sensDB.roundToDigit" [disableResetBtn]="!sensCollection.length" (resetEvent)="reset()">
+    </app-init-sens>
+
+    <div [ngClass]=" sensDB.originSens
+    ? 'px-6 pt-8 lg:py-8 rounded-lg border-2 border-border opacity-100 ease-out duration-300' : 'invisible opacity-0'">
+      <app-senses id="app-senses" *ngFor=" let sensArr of sensCollection ; index as i"
+        [hideBtns]="(i+1) != sensCollection.length" [sensArr]="sensArr" (newSensEvent)="calculateSens($event)">
+      </app-senses>
+    </div>
+  </div>

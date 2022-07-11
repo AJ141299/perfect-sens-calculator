@@ -10,7 +10,7 @@
   <div>
     <button (click)="calculateSens()" [disabled]="!sensValue.value"
       class="drop-shadow w-[80vw] lg:w-auto outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
-      [ngClass]="sensValue.value ? ' bg-blue-900 hover:bg-blue-700' : 'bg-lighter-background text-gray-500'"
+      [ngClass]="sensValue.value ? ' bg-blue-900 lg:hover:bg-blue-700' : 'bg-lighter-background text-gray-500'"
       id="calculate-btn">
       Calculate
     </button>
@@ -19,7 +19,7 @@
   <div>
     <button (click)="reset()" [disabled]="disableResetBtn"
       class="drop-shadow w-[80vw] lg:w-auto rounded-full py-3 px-8 font-medium outline-none"
-      [ngClass]="disableResetBtn ? 'bg-lighter-background text-gray-500' : 'bg-lighter-background hover:bg-red-800  ease-out duration-200'"
+      [ngClass]="disableResetBtn ? 'bg-lighter-background text-gray-500' : 'bg-lighter-background lg:hover:bg-red-800  ease-out duration-200'"
       id="calculate-btn">
       Reset
     </button>
@@ -32,18 +32,18 @@
     <label for="roundTo">Round to:</label>
     <select (change)="updateRoundToDigit(roundToInput)" class="bg-transparent outline-none" name="roundTO" id="round-to"
       #roundToInput>
-      <option selected value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="3">4</option>
-      <option value="3">5</option>
+      <option class="round-to-option" value="0">0</option>
+      <option class="round-to-option" value="1">1</option>
+      <option class="round-to-option" value="2">2</option>
+      <option class="round-to-option" value="3">3</option>
+      <option class="round-to-option" value="4">4</option>
+      <option class="round-to-option" value="5">5</option>
     </select>
   </div>
 
   <!-- tut vid -->
   <div>
-    <a class="drop-shadow w-[80vw] lg:w-auto flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 hover:bg-yellow-700 hover:text-white outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
+    <a class="drop-shadow w-[80vw] lg:w-auto flex space-x-2 justify-center items-center bg-lighter-background text-gray-300 lg:hover:bg-yellow-700 lg:hover:text-white outline-none ease-out duration-200 rounded-full py-3 px-8 font-medium"
       href="https://www.youtube.com/watch?v=8VJZiolzaI4" target="_blank">
       <p class="">Tutorial Video</p>
       <svg xmlns="http://www.w3.org/2000/svg" class=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"

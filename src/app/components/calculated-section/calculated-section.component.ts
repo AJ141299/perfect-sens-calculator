@@ -8,9 +8,8 @@ import { SensDB, SensRow } from '../sensDB-interface';
   styleUrls: ['./calculated-section.component.css'],
 })
 export class CalculatedSectionComponent implements OnInit {
-  sensDB: SensDB = { originSens: 0, sensTable: [] };
+  sensDB: SensDB = { originSens: 0, roundToDigit: 0, sensTable: [] };
   sensCollection: number[][] = [];
-  roundToDigit: number = 0;
 
   constructor() {}
 
@@ -23,7 +22,7 @@ export class CalculatedSectionComponent implements OnInit {
     this.sensDB.originSens = originSens;
     const newSens: SensRow = calculator(
       { sens: [originSens], pickedPos: 0 },
-      this.roundToDigit,
+      this.sensDB.roundToDigit,
       true
     );
     this.refreshDisplay(newSens);
@@ -47,8 +46,15 @@ export class CalculatedSectionComponent implements OnInit {
   calculateSens(pickedPos: number) {
     this.setLastSensPos(pickedPos);
     const lastSens = this.sensDB.sensTable[this.getLastSensIndex()];
-    const newSens: SensRow = calculator(lastSens, this.roundToDigit, true);
-    this.refreshDisplay(newSens);
+    const newSens: SensRow = calculator(
+      lastSens,
+      this.sensDB.roundToDigit,
+      false
+    );
+
+    if (!isFalseSens(newSens.sens)) {
+      this.refreshDisplay(newSens);
+    }
   }
 
   getLastSensIndex() {
@@ -60,12 +66,17 @@ export class CalculatedSectionComponent implements OnInit {
   }
 
   reset() {
-    this.sensDB = { originSens: 0, sensTable: [] };
+    this.sensDB = {
+      originSens: 0,
+      sensTable: [],
+      roundToDigit: this.sensDB.roundToDigit,
+    };
     this.sensCollection = [];
+    this.setLocalStorage();
   }
 
   updateRoundToDigit(newRoundToDigit: number) {
-    this.roundToDigit = newRoundToDigit;
+    this.sensDB.roundToDigit = newRoundToDigit;
     this.reset();
   }
 
@@ -79,6 +90,12 @@ export class CalculatedSectionComponent implements OnInit {
     this.sensCollection = JSON.parse(
       localStorage.getItem('sensCollection') || '{}'
     );
+  }
+
+  undo() {
+    this.sensCollection.pop();
+    this.sensDB.sensTable.pop();
+    this.setLocalStorage();
   }
 }
 

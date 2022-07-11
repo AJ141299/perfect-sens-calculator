@@ -10,6 +10,7 @@ import { SensesComponent } from './components/senses/senses.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { FloatingBtnComponent } from './components/floating-btn/floating-btn.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,11 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     CalculatedSectionComponent,
     SensesComponent,
     FooterComponent,
-    TooltipComponent
+    TooltipComponent,
+    FloatingBtnComponent,
   ],
-  imports: [
-    BrowserModule,
-    FontAwesomeModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, FontAwesomeModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
