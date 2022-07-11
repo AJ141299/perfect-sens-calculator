@@ -30,7 +30,6 @@ export class CalculatedSectionComponent implements OnInit {
     this.refreshDisplay(newSens);
   }
 
-  // displays a 'sens' (e.g. [25, 50, 100]) on the calculated section
   refreshDisplay(newSens: SensRow) {
     if (!isFalseSens(newSens.sens)) {
       this.sensDB.sensTable.push(newSens);
