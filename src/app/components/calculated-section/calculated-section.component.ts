@@ -15,8 +15,7 @@ export class CalculatedSectionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.updateFromLocalStorage();
-    // this.syncSensBtns();
+    this.updateFromLocalStorage();
   }
 
   firstCalculate(originSens: number) {
@@ -81,8 +80,6 @@ export class CalculatedSectionComponent implements OnInit {
       localStorage.getItem('sensCollection') || '{}'
     );
   }
-
-  syncSensBtns() {}
 }
 
 // returns if any of the three senses are equal

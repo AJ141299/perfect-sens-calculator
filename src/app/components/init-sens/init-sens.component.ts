@@ -1,6 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { calculator } from '../../calculator';
-import { SensDB } from '../sensDB-interface';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-init-sens',
@@ -11,9 +9,9 @@ export class InitSensComponent implements OnInit {
   @Output() firstCalculate = new EventEmitter<number>();
   @Output() resetEvent = new EventEmitter();
   @Output() roundToEvent = new EventEmitter<number>();
+  @Input() disableResetBtn: boolean = true;
 
   sensInput: string = '';
-  disableResetBtn: boolean = true;
   enableCalculateBtn: boolean = true;
   disableRoundToInput: boolean = false;
   roundToDigit: number = 0;
